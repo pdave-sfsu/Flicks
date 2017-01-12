@@ -12,6 +12,7 @@ import MBProgressHUD
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var networkErrorView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
     var movies: [NSDictionary]?
@@ -19,12 +20,25 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        networkErrorView.isHidden = true
+        
+        let refreshControl = UIRefreshControl()
+        
         tableView.dataSource = self
         tableView.delegate = self
         
+        refreshControl.addTarget(self, action: #selector(MoviesViewController.refreshControlAction(_ :)), for: UIControlEvents.valueChanged)
+        
+        tableView.insertSubview(refreshControl, at: 0)
+        
+        networkRequestForMovie()
+        
+    }
+    
+    func networkRequestForMovie () {
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")!
-        let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
+        let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 2)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
@@ -35,13 +49,33 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                     print(dataDictionary)
                     
                     self.movies = dataDictionary["results"] as? [NSDictionary]
+                    
+                    self.networkErrorView.isHidden = true
+                    
                     self.tableView.reloadData()
                     
                     MBProgressHUD.hide(for: self.view, animated: true)
                 }
+            } else {
+                self.networkErrorView.isHidden = false
+                MBProgressHUD.hide(for: self.view, animated: true)
+                
+                self.tableView.reloadData()
+                
+                self.networkRequestForMovie()
             }
         }
         task.resume()
+        
+    }
+    
+    func refreshControlAction(_ refreshControl: UIRefreshControl){
+        
+        self.tableView.reloadData()
+        
+        networkRequestForMovie()
+        
+        refreshControl.endRefreshing()
     }
 
     override func didReceiveMemoryWarning() {
