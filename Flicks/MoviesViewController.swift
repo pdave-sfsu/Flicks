@@ -31,6 +31,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         tableView.insertSubview(refreshControl, at: 0)
         
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         networkRequestForMovie()
         
     }
@@ -41,7 +42,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 2)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
         
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+//        var progressDisplaying = MBProgressHUD.hide(for: self.view, animated: true)
+        
+//        if !progressDisplaying {
+//            MBProgressHUD.showAdded(to: self.view, animated: true)
+//        }
         
         let task: URLSessionDataTask = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
             if let data = data {
@@ -58,7 +63,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 }
             } else {
                 self.networkErrorView.isHidden = false
-                MBProgressHUD.hide(for: self.view, animated: true)
+                
+//                MBProgressHUD.hide(for: self.view, animated: true)
                 
                 self.tableView.reloadData()
                 
@@ -73,6 +79,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         self.tableView.reloadData()
         
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         networkRequestForMovie()
         
         refreshControl.endRefreshing()
