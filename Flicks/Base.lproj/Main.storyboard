@@ -70,6 +70,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="BC8-aF-SVr" id="3SD-QA-IFb"/>
+                        <outlet property="networkErrorLabel" destination="cyg-IU-g9H" id="bAF-m9-pVd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nhl-FX-min" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -88,12 +89,17 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" id="gR6-hv-VQQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="135" id="UKI-7N-fY6" customClass="MovieCell" customModule="Flicks" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="135"/>
+                                        <rect key="frame" x="0.0" y="72" width="375" height="135"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UKI-7N-fY6" id="1hE-NY-Ibs">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="134.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="134"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DdX-QB-NAU">
@@ -156,6 +162,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="networkErrorView" destination="4wi-Sx-3lk" id="Hh2-Yh-bi4"/>
+                        <outlet property="searchBar" destination="gR6-hv-VQQ" id="gJg-q1-eaj"/>
                         <outlet property="tableView" destination="Mh8-Y1-7yh" id="NVL-ud-jsg"/>
                     </connections>
                 </viewController>
@@ -166,6 +173,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Fta-hY-7AO">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bbe-py-xuq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RwM-OO-aYN" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="I1e-Mk-pNR">
@@ -177,7 +185,6 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="iSq-yh-6Sl"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bbe-py-xuq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="85.5" y="152.5"/>
         </scene>

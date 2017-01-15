@@ -10,12 +10,16 @@ import UIKit
 import AFNetworking
 import MBProgressHUD
 
-class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     @IBOutlet weak var networkErrorView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     var movies: [NSDictionary]?
+    
+    var filteredData: [NSDictionary]!
     
     let refreshControl = UIRefreshControl()
 
@@ -24,6 +28,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
 
         tableView.dataSource = self
         tableView.delegate = self
+        
+        searchBar.delegate = self
         
         networkErrorView.isHidden = true
         
@@ -34,6 +40,16 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         MBProgressHUD.showAdded(to: self.view, animated: true)
         networkRequestForMovie()
         
+    }
+    
+    func searchBar (_ searchBar: UISearchBar, textDidChange searchText: String){
+        
+        filteredData = searchText.isEmpty ? movies : movies?.filter({(movie: NSDictionary) -> Bool in
+            // If dataItem matches the searchText, return true to include it
+            return (movie["title"] as! String).range(of: searchText, options: .caseInsensitive) != nil
+        })
+        
+        tableView.reloadData()
     }
     
     func networkRequestForMovie () {
@@ -55,6 +71,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
 //                    print(dataDictionary)
                     
                     self.movies = dataDictionary["results"] as? [NSDictionary]
+                    
+                    self.filteredData = self.movies!
                 
                     self.tableView.reloadData()
                     
@@ -95,7 +113,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if let movies = movies {
-            return movies.count
+            return filteredData.count
         } else {
             return 0
         }
@@ -106,7 +124,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         
-        let movie = movies![indexPath.row]
+        let movie = filteredData![indexPath.row]
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
         

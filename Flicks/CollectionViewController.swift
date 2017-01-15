@@ -14,6 +14,8 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var networkErrorLabel: UIView!
+    
     var movies: [NSDictionary]?
 
     let refreshControl = UIRefreshControl()
@@ -24,7 +26,7 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
         collectionView.dataSource = self
         collectionView.delegate = self
         
-
+        networkErrorLabel.isHidden = true
         
         refreshControl.addTarget(self, action: #selector(MoviesViewController.refreshControlAction(_ :)), for: UIControlEvents.valueChanged)
         
@@ -46,11 +48,13 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
             if let data = data {
                 if let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
                     
-                    print(dataDictionary)
+//                    print(dataDictionary)
                     
                     self.movies = dataDictionary["results"] as? [NSDictionary]
                     
                     self.collectionView.reloadData()
+                    
+                    self.networkErrorLabel.isHidden = true
                     
                     MBProgressHUD.hide(for: self.view, animated: true)
                     
@@ -58,6 +62,10 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
                     
                 }
             } else {
+                
+                self.networkErrorLabel.isHidden = false
+                
+                self.collectionView.reloadData()
                 
                 self.networkRequestForMovie()
             }
