@@ -16,16 +16,16 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var tableView: UITableView!
     
     var movies: [NSDictionary]?
+    
+    let refreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        networkErrorView.isHidden = true
-        
-        let refreshControl = UIRefreshControl()
-        
+
         tableView.dataSource = self
         tableView.delegate = self
+        
+        networkErrorView.isHidden = true
         
         refreshControl.addTarget(self, action: #selector(MoviesViewController.refreshControlAction(_ :)), for: UIControlEvents.valueChanged)
         
@@ -51,15 +51,18 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         let task: URLSessionDataTask = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
             if let data = data {
                 if let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
+                    
                     print(dataDictionary)
                     
                     self.movies = dataDictionary["results"] as? [NSDictionary]
-                    
-                    self.networkErrorView.isHidden = true
-                    
+                
                     self.tableView.reloadData()
                     
+                    self.networkErrorView.isHidden = true
                     MBProgressHUD.hide(for: self.view, animated: true)
+                    
+                    self.refreshControl.endRefreshing()
+                    
                 }
             } else {
                 self.networkErrorView.isHidden = false
@@ -82,7 +85,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         MBProgressHUD.showAdded(to: self.view, animated: true)
         networkRequestForMovie()
         
-        refreshControl.endRefreshing()
     }
 
     override func didReceiveMemoryWarning() {
