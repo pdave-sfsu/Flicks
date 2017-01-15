@@ -52,7 +52,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             if let data = data {
                 if let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
                     
-                    print(dataDictionary)
+//                    print(dataDictionary)
                     
                     self.movies = dataDictionary["results"] as? [NSDictionary]
                 

@@ -7,27 +7,72 @@
 //
 
 import UIKit
+import AFNetworking
+import MBProgressHUD
 
-class CollectionViewController: UIViewController, UICollectionViewDataSource {
+class CollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    var movies: [NSDictionary]?
 
-    let totalColors: Int = 100
-    func colorForIndexPath(indexPath: NSIndexPath) -> UIColor {
-        if indexPath.row >= totalColors {
-            return UIColor.black	// return black if we get an unexpected row index
-        }
-        
-        var hueValue: CGFloat = CGFloat(indexPath.row) / CGFloat(totalColors)
-        return UIColor(hue: hueValue, saturation: 1.0, brightness: 1.0, alpha: 1.0)
-    }
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.dataSource = self
+        collectionView.delegate = self
+        
+
+        
+        refreshControl.addTarget(self, action: #selector(MoviesViewController.refreshControlAction(_ :)), for: UIControlEvents.valueChanged)
+        
+        collectionView.insertSubview(refreshControl, at: 0)
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        networkRequestForMovie()
 
         // Do any additional setup after loading the view.
+    }
+    
+    func networkRequestForMovie () {
+        let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
+        let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")!
+        let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 2)
+        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
+        
+        let task: URLSessionDataTask = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
+            if let data = data {
+                if let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
+                    
+                    print(dataDictionary)
+                    
+                    self.movies = dataDictionary["results"] as? [NSDictionary]
+                    
+                    self.collectionView.reloadData()
+                    
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    
+                    self.refreshControl.endRefreshing()
+                    
+                }
+            } else {
+                
+                self.networkRequestForMovie()
+            }
+        }
+        task.resume()
+        
+    }
+
+    func refreshControlAction(_ refreshControl: UIRefreshControl){
+        
+        self.collectionView.reloadData()
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        networkRequestForMovie()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,20 +82,26 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource {
     
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return totalColors
+        if let movies = movies {
+            return movies.count
+        } else {
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorCell", for: indexPath) as! ColorCell
-        let cellColor = colorForIndexPath(indexPath: indexPath as NSIndexPath)
-        cell.backgroundColor = cellColor
+
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCollectionTypeCell", for: indexPath) as! MovieCollectionViewCell
         
-        if cellColor.cgColor.numberOfComponents == 4 {
-            let redComponent = (cellColor.cgColor.components?[0])! * 255
-            let greenComponent = (cellColor.cgColor.components?[1])! * 255
-            let blueComponent = (cellColor.cgColor.components?[2])! * 255
-            cell.colorLabel.text = String(format: "%.0f, %.0f, %.0f", redComponent, greenComponent, blueComponent)
-        }
+        let movie = movies![indexPath.row]
+        
+        let baseURL = "https://image.tmdb.org/t/p/w500"
+        let posterPath = movie["poster_path"] as! String
+        let imageURL = NSURL(string: baseURL + posterPath)
+        
+        cell.posterView.setImageWith(imageURL as! URL)
+        
+        print("row \(indexPath.row)")
         
         return cell
     }
