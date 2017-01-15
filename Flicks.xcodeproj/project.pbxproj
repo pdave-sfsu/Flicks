@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8CB1C194CE8D3857537E6535 /* Pods_Flicks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C51569385BD340D4B616C8D9 /* Pods_Flicks.framework */; };
+		A55061631E2B629E00086979 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55061621E2B629E00086979 /* CollectionViewController.swift */; };
+		A55061651E2B64E600086979 /* ColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55061641E2B64E600086979 /* ColorCell.swift */; };
 		A58A291D1E26F7160085609C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A291C1E26F7160085609C /* AppDelegate.swift */; };
 		A58A29221E26F7160085609C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A58A29201E26F7160085609C /* Main.storyboard */; };
 		A58A29241E26F7160085609C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A58A29231E26F7160085609C /* Assets.xcassets */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A55061621E2B629E00086979 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		A55061641E2B64E600086979 /* ColorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
 		A58A29191E26F7160085609C /* Flicks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flicks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A58A291C1E26F7160085609C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A58A29211E26F7160085609C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -86,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				A58A29311E2741610085609C /* MovieCell.swift */,
+				A55061641E2B64E600086979 /* ColorCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -94,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				A58A292E1E26F7610085609C /* MoviesViewController.swift */,
+				A55061621E2B629E00086979 /* CollectionViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -230,8 +236,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A55061631E2B629E00086979 /* CollectionViewController.swift in Sources */,
 				A58A291D1E26F7160085609C /* AppDelegate.swift in Sources */,
 				A58A292F1E26F7610085609C /* MoviesViewController.swift in Sources */,
+				A55061651E2B64E600086979 /* ColorCell.swift in Sources */,
 				A58A29321E2741610085609C /* MovieCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
