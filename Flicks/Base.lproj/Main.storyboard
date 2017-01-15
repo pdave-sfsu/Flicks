@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Collection View Controller-->
+        <!--Flicks-->
         <scene sceneID="4CI-VZ-65f">
             <objects>
                 <viewController id="S5u-gh-CR5" customClass="CollectionViewController" customModule="Flicks" customModuleProvider="target" sceneMemberID="viewController">
@@ -65,8 +65,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="q4Z-xg-VbH">
-                        <barButtonItem key="rightBarButtonItem" title="Table View" id="pfa-Vu-oxm"/>
+                    <navigationItem key="navigationItem" title="Flicks" id="q4Z-xg-VbH">
+                        <barButtonItem key="backBarButtonItem" title="Table View" id="nge-WM-MER"/>
+                        <barButtonItem key="leftBarButtonItem" image="iconmonstr-menu-2-24.png" id="pfa-Vu-oxm">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="push" id="WfI-53-K4K"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="BC8-aF-SVr" id="3SD-QA-IFb"/>
@@ -75,7 +80,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nhl-FX-min" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="655.5" y="-563.5"/>
+            <point key="canvasLocation" x="673" y="-649"/>
         </scene>
         <!--Flicks-->
         <scene sceneID="tne-QT-ifu">
@@ -149,11 +154,12 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Flicks" id="jVf-hX-uUH">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="s2W-C1-Wju">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9lW-l9-ux0">
-                                <rect key="frame" x="258" y="7" width="101" height="30"/>
+                        <barButtonItem key="backBarButtonItem" title="Table View" id="KYm-V8-B0h"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="s2W-C1-Wju">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9lW-l9-ux0">
+                                <rect key="frame" x="16" y="7" width="101" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="CollectionView"/>
+                                <state key="normal" image="iconmonstr-picture-6-24.png"/>
                                 <connections>
                                     <segue destination="S5u-gh-CR5" kind="push" id="nYK-wd-Djd"/>
                                 </connections>
@@ -173,7 +179,6 @@
         <!--Navigation Controller-->
         <scene sceneID="Fta-hY-7AO">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bbe-py-xuq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RwM-OO-aYN" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="I1e-Mk-pNR">
@@ -185,13 +190,21 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="iSq-yh-6Sl"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bbe-py-xuq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="85.5" y="152.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="iconmonstr-menu-2-24.png" width="24" height="24"/>
+        <image name="iconmonstr-picture-6-24.png" width="24" height="24"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="iSq-yh-6Sl"/>
+    </inferredMetricsTieBreakers>
 </document>
