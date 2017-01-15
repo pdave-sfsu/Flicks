@@ -62,9 +62,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         searchBar.resignFirstResponder()
         
         self.tableView.reloadData()
-        
-        MBProgressHUD.showAdded(to: self.view, animated: true)
-        networkRequestForMovie()
+
     }
     
     func networkRequestForMovie () {
