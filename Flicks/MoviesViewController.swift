@@ -58,7 +58,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = false
-        searchBar.text = ""
+        
         searchBar.resignFirstResponder()
         
         self.tableView.reloadData()
@@ -88,6 +88,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                     self.filteredData = self.movies!
                 
                     self.tableView.reloadData()
+                    
+                    self.searchBar.text = ""
                     
                     self.networkErrorView.isHidden = true
                     MBProgressHUD.hide(for: self.view, animated: true)
