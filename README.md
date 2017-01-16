@@ -4,7 +4,7 @@
 
 Flicks is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: ~25 hours spent in total
+Time spent: ~28 hours spent in total
 
 ## User Stories
 
@@ -27,7 +27,7 @@ The following **additional** features are implemented:
 
 - [x] List anything else that you can get done to improve the app functionality!
 - [x] Added a launch screen that has the logo and name of app
-- [x] Tried to add an icon for the app; did not work for some reason
+- [x] Tried to add an icon for the app
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
