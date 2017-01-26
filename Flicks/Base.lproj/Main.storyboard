@@ -67,7 +67,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Flicks" id="q4Z-xg-VbH">
                         <barButtonItem key="backBarButtonItem" title="Table View" id="nge-WM-MER"/>
-                        <barButtonItem key="leftBarButtonItem" image="iconmonstr-menu-2-24" id="pfa-Vu-oxm">
+                        <barButtonItem key="leftBarButtonItem" image="menuButton" id="pfa-Vu-oxm">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="push" id="WfI-53-K4K"/>
                             </connections>
@@ -159,7 +159,7 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9lW-l9-ux0">
                                 <rect key="frame" x="16" y="7" width="101" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="iconmonstr-picture-6-24"/>
+                                <state key="normal" image="pictureButton"/>
                                 <connections>
                                     <segue destination="S5u-gh-CR5" kind="push" id="nYK-wd-Djd"/>
                                 </connections>
@@ -196,8 +196,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="iconmonstr-menu-2-24" width="24" height="24"/>
-        <image name="iconmonstr-picture-6-24" width="24" height="24"/>
+        <image name="menuButton" width="24" height="24"/>
+        <image name="pictureButton" width="24" height="24"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
