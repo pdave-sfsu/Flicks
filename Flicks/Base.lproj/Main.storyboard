@@ -100,11 +100,11 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="135" id="UKI-7N-fY6" customClass="MovieCell" customModule="Flicks" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="135" id="UKI-7N-fY6" customClass="MovieCell" customModule="Flicks" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="375" height="135"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UKI-7N-fY6" id="1hE-NY-Ibs">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="134.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="134"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DdX-QB-NAU">
@@ -131,6 +131,7 @@
                                             <outlet property="overviewLabel" destination="VS0-7x-rHX" id="Pfs-V7-1B1"/>
                                             <outlet property="posterView" destination="4Fi-b9-x3x" id="NAK-zQ-mXS"/>
                                             <outlet property="titleLabel" destination="DdX-QB-NAU" id="JZM-Lg-TLq"/>
+                                            <segue destination="Nw8-uK-SPC" kind="push" id="1Kb-gG-axE"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -175,6 +176,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="672.5" y="152.5"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="AsZ-7H-4fC">
+            <objects>
+                <viewController id="Nw8-uK-SPC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0x2-UH-GxN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="3ch-iB-oKQ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HTQ-Ln-aw0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1262" y="174"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Fta-hY-7AO">
