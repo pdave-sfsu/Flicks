@@ -147,7 +147,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         cell.overviewLabel.text = overview
         
         let baseURL = "https://image.tmdb.org/t/p/w500"
-        let posterPath = movie["poster_path"] as! String
+        if let posterPath = movie["poster_path"] as? String {
+            
+        
         let imageRequest = NSURLRequest(url: NSURL(string: baseURL + posterPath) as! URL)
         
         cell.posterView.setImageWith(
@@ -173,6 +175,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             failure: { (imageRequest, imageResponse, error) -> Void in
                 // do something for the failure condition
         })
+            
+        }
         
         print("row \(indexPath.row)")
         
@@ -181,14 +185,26 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        if let cell = sender as? UITableViewCell {
+        
+        let indexPath = tableView.indexPath(for: cell)
+        
+        let movie = movies![indexPath!.row]
+        
+        let detailViewController = segue.destination as! DetailViewController
+        
+        detailViewController.movie = movie
+        
+        }
+        
+        print("prepare for segue")
     }
-    */
+    
 
 }
