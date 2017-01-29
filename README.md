@@ -74,7 +74,7 @@ Also had an issue with the ProgressBar cocoapod; need to understand documentatio
 
 Flicks is a movies app displaying box office and top rental DVDs using [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: **X** hours spent in total
+Time spent: 13 hours spent in total
 
 ## User Stories
 
@@ -102,7 +102,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+![animatedGIF](FlicksGIF2.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
