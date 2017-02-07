@@ -10,6 +10,7 @@ import UIKit
 
 class MovieCollectionViewCell: UICollectionViewCell {
     
+    //PosterView Outlet
     @IBOutlet weak var posterView: UIImageView!
     
 }
