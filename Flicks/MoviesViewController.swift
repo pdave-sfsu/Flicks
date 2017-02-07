@@ -144,6 +144,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         //Use the baseURL and the posterPath URL to retrieve the image
         let baseURL = "https://image.tmdb.org/t/p/w500"
+        //Use if let to safely unwrap the postPath
         if let posterPath = movie["poster_path"] as? String {
             
             //Retireve the image using the complete URL
@@ -227,14 +228,20 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        //If the sender can be seen as a tableViewCell
+        //Going from cell to detailView
         if let cell = sender as? UITableViewCell {
             
+            //IndexPath of cell
             let indexPath = tableView.indexPath(for: cell)
             
+            //Specific movie retrieved
             let movie = movies![indexPath!.row]
             
+            //segue.destination is cast as DetailViewController to access movie property
             let detailViewController = segue.destination as! DetailViewController
             
+            //Set movie property with details of movie
             detailViewController.movie = movie
             
         }
