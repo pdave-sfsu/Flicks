@@ -60,6 +60,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     func networkRequestForMovie () {
         
         //apikey and the url for retrieiving the movie
+        //endpoint can be changed to top_rated or now_playing
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         let url = URL(string: "https://api.themoviedb.org/3/movie/\(endpoint!)?api_key=\(apiKey)")!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 2)

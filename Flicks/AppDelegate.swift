@@ -11,37 +11,66 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    //window
     var window: UIWindow?
 
-
+    //didFinishLaunchingWithOptions
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         
+        //initialize window
         window = UIWindow(frame: UIScreen.main.bounds)
         
+        //storyboard property
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
+        //FOR NOW PLAYING
+        
+        //reference the Navigation Controller by using the Storyboard ID
+        //Cast it as UINavigationController
         let nowPlayingNavigationController = storyboard.instantiateViewController(withIdentifier: "MoviesNavigationController") as! UINavigationController
         
+        //reference the View Contoller through Navigation Controller
+        //Cast it as MoviesViewController
         let nowPlayingViewController = nowPlayingNavigationController.topViewController as! MoviesViewController
         
+        //Change the endpoint to "now_playing"
         nowPlayingViewController.endpoint = "now_playing"
         
+        //Change the tab Bar title to "Now Playing"
         nowPlayingNavigationController.tabBarItem.title = "Now Playing"
         
+        //Adds the image onto the tab bar; 242px
+        nowPlayingNavigationController.tabBarItem.image = UIImage(named: "nowPlaying24")
         
+        //FOR TOP RATED
+        
+        //reference the Navigation Controller by using the Storyboard ID
+        //Cast it as UINavigationController
         let topRatedNavigationController = storyboard.instantiateViewController(withIdentifier: "MoviesNavigationController") as! UINavigationController
         
+        //reference the View Contoller through Navigation Controller
+        //Cast it as MoviesViewController
         let topRatedViewController = topRatedNavigationController.topViewController as! MoviesViewController
         
+        //Change the endpoint to "top_rated"
         topRatedViewController.endpoint = "top_rated"
         
+        //Change the tab Bar title to "Top Rated"
         topRatedNavigationController.tabBarItem.title = "Top Rated"
         
+        //Adds the image on the tab bar; 24px
+        topRatedNavigationController.tabBarItem.image = UIImage(named: "topRated24")
         
+        //Creating the TAB BAR
+        
+        //Initialized the tabBarController
         let tabBarController = UITabBarController()
+        
+        //Added the two view controllers to the tab bar
         tabBarController.viewControllers = [nowPlayingNavigationController, topRatedNavigationController]
         
+        
+        //rootViewController sets the initial view controller
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
         
