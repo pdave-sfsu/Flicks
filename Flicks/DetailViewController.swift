@@ -15,6 +15,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
     
+    //scrollview and infoview
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var infoView: UIView!
     
@@ -25,6 +26,8 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //set the size of the scrollview; width is straightforward; 
+        //height is infoView y + infoView.height
         scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: infoView.frame.origin.y + infoView.frame.size.height)
         
         //Retrieves and sets the title and overview
@@ -33,18 +36,16 @@ class DetailViewController: UIViewController {
         let overview = movie["overview"] as? String
         overviewLabel.text = overview
         
+        //Changes the overviewLabel to be the size that is required depending upon the text
         overviewLabel.sizeToFit()
         
         //Use the baseURL and the posterPath URL to retrieve the image
         let baseURL = "https://image.tmdb.org/t/p/w500"
         //Use if let to safely unwrap the postPath
         if let posterPath = movie["poster_path"] as? String {
-            
             let posterURL = NSURL(string: baseURL + posterPath)
             posterImageView.setImageWith(posterURL! as URL)
         }
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,7 +53,6 @@ class DetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
     /*
     // MARK: - Navigation
 
