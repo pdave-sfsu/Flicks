@@ -14,11 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //window
     var window: UIWindow?
 
-    //didFinishLaunchingWithOptions
+    //didFinishLaunchingWithOptions: First method that is called when app awakens
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        //initialize window
-        window = UIWindow(frame: UIScreen.main.bounds)
         
         //storyboard property
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -29,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Cast it as UINavigationController
         let nowPlayingNavigationController = storyboard.instantiateViewController(withIdentifier: "MoviesNavigationController") as! UINavigationController
         
-        //reference the View Contoller through Navigation Controller
+        //reference the top View Contoller through Navigation Controller
         //Cast it as MoviesViewController
         let nowPlayingViewController = nowPlayingNavigationController.topViewController as! MoviesViewController
         
@@ -69,6 +66,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Added the two view controllers to the tab bar
         tabBarController.viewControllers = [nowPlayingNavigationController, topRatedNavigationController]
         
+        
+        //initialize window
+        window = UIWindow(frame: UIScreen.main.bounds)
         
         //rootViewController sets the initial view controller
         window?.rootViewController = tabBarController

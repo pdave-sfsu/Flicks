@@ -7,21 +7,25 @@
 //
 
 import UIKit
+//AfNetworking to retrieve the images
 import AFNetworking
+//progress HUD
 import MBProgressHUD
 
+//UITableViewDataSource & UITableViewDelegate for tableView
+//UISearchBarDelegate for searchBar
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
-    //TableView
+    //tableView
     @IBOutlet weak var tableView: UITableView!
     
     //networkErrorView
     @IBOutlet weak var networkErrorView: UIView!
     
-    //Searchbar
+    //searchBar
     @IBOutlet weak var searchBar: UISearchBar!
     
-    //refresh control
+    //refreshControl
     let refreshControl = UIRefreshControl()
     
     //complete movies list
@@ -32,6 +36,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     //endpoint that can be changed
     var endpoint: String! = "now_playing"
+    
+    //variable to determine if progressBar is Showing
+    var isProgressBarShowing = false
     
     //viewDidLoad
     override func viewDidLoad() {
@@ -52,7 +59,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.insertSubview(refreshControl, at: 0)
         
         //Turning on the ProgressBar and making a request for the movies
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+//        MBProgressHUD.showAdded(to: self.view, animated: true)
         networkRequestForMovie()
     }
     
@@ -72,6 +79,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         //        if !progressDisplaying {
         //            MBProgressHUD.showAdded(to: self.view, animated: true)
         //        }
+        
+        if !isProgressBarShowing {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            isProgressBarShowing = true
+        }
         
         print(endpoint)
         
@@ -99,6 +111,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                     
                     //Progressbar is hidden
                     MBProgressHUD.hide(for: self.view, animated: true)
+                    self.isProgressBarShowing = false
                     
                     //refreshControl is over
                     self.refreshControl.endRefreshing()
@@ -187,7 +200,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     func refreshControlAction(_ refreshControl: UIRefreshControl){
         
         //Turn on the ProgressHUD and make the networkRequestForMove()
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+//        MBProgressHUD.showAdded(to: self.view, animated: true)
         networkRequestForMovie()
     }
 
@@ -223,6 +236,16 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         //TableViewis reloaded
         self.tableView.reloadData()
     }
+    
+    @IBAction func collevtionViewButton(_ sender: Any) {
+        tableView.isHidden = true
+    }
+    
+    @IBAction func collectionViewChangeButton(_ sender: Any) {
+        tableView.isHidden = true
+        print("this worked")
+    }
+    
 
     // MARK: - Navigation
     
