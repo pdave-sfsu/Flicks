@@ -74,7 +74,7 @@ Also had an issue with the ProgressBar cocoapod; need to understand documentatio
 
 Flicks is a movies app displaying box office and top rental DVDs using [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: 13 hours spent in total
+Time spent: 20 hours spent in total
 
 ## User Stories
 
@@ -95,6 +95,7 @@ The following **additional** features are implemented:
 - [X] Added a third "popular" navigation bar
 - [X] Within the detailView, only the description gets dragged when it is scrolled
 - [X] Has both tableView & collectionView
+- [X] Added constraints to the tableViewCell, changed the font
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
@@ -107,13 +108,17 @@ Here's a walkthrough of implemented user stories:
 
 ![animatedGIF](FlicksGIF2.gif)
 
+Updated GIF (2/12):
+
+![animatedGIF](FlicksGIF3.gif)
+
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
 Describe any challenges encountered while building the app.
 
-I didn't have many challenges. Time was certainly an issue since it was the first week of school.'
+I didn't have many challenges. Time was certainly an issue since it was the first week of school.
 
 ## License
 
