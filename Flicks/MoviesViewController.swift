@@ -67,6 +67,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         refreshControl.addTarget(self, action: #selector(MoviesViewController.refreshControlAction(_ :)), for: UIControlEvents.valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
         
+        collectionView.insertSubview(refreshControl, at: 0)
+        
         //Turning on the ProgressBar and making a request for the movies
 //        MBProgressHUD.showAdded(to: self.view, animated: true)
         networkRequestForMovie()
