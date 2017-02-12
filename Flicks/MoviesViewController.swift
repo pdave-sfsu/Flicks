@@ -72,6 +72,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         //Turning on the ProgressBar and making a request for the movies
 //        MBProgressHUD.showAdded(to: self.view, animated: true)
         networkRequestForMovie()
+        
+        
     }
     
     //Makes the request for the movie

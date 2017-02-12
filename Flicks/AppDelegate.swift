@@ -86,6 +86,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Added the two view controllers to the tab bar
         tabBarController.viewControllers = [popularNavigationController, nowPlayingNavigationController, topRatedNavigationController]
         
+        var navigationBarAppearace = UINavigationBar.appearance()
+        
+        navigationBarAppearace.tintColor = UIColor.black
+        navigationBarAppearace.barTintColor = UIColor.orange
+        
+        // change navigation item title color
+        navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.black]
+        
         
         //initialize window
         window = UIWindow(frame: UIScreen.main.bounds)
