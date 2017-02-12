@@ -58,13 +58,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Adds the image on the tab bar; 24px
         topRatedNavigationController.tabBarItem.image = UIImage(named: "topRated24")
         
+        
+        //FOR NOW PLAYING
+        
+        //reference the Navigation Controller by using the Storyboard ID
+        //Cast it as UINavigationController
+        let popularNavigationController = storyboard.instantiateViewController(withIdentifier: "MoviesNavigationController") as! UINavigationController
+        
+        //reference the top View Contoller through Navigation Controller
+        //Cast it as MoviesViewController
+        let popularViewController = popularNavigationController.topViewController as! MoviesViewController
+        
+        //Change the endpoint to "now_playing"
+        popularViewController.endpoint = "popular"
+        
+        //Change the tab Bar title to "Now Playing"
+        popularNavigationController.tabBarItem.title = "Popular"
+        
+        //Adds the image onto the tab bar; 242px
+        popularNavigationController.tabBarItem.image = UIImage(named: "popular24")
+        
         //Creating the TAB BAR
         
         //Initialized the tabBarController
         let tabBarController = UITabBarController()
         
         //Added the two view controllers to the tab bar
-        tabBarController.viewControllers = [nowPlayingNavigationController, topRatedNavigationController]
+        tabBarController.viewControllers = [popularNavigationController, nowPlayingNavigationController, topRatedNavigationController]
         
         
         //initialize window

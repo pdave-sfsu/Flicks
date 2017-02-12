@@ -67,7 +67,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         refreshControl.addTarget(self, action: #selector(MoviesViewController.refreshControlAction(_ :)), for: UIControlEvents.valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
         
-        collectionView.insertSubview(refreshControl, at: 0)
+        
         
         //Turning on the ProgressBar and making a request for the movies
 //        MBProgressHUD.showAdded(to: self.view, animated: true)
@@ -258,9 +258,17 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             tableView.isHidden = false
             collectionView.isHidden = true
             
+//            refreshControl.addTarget(self, action: #selector(MoviesViewController.refreshControlAction(_ :)), for: UIControlEvents.valueChanged)
+//            collectionView.insertSubview(refreshControl, at: 0)
+//            print("This did get run")
+            
         } else {
             tableView.isHidden = true
             collectionView.isHidden = false
+            
+//            refreshControl.addTarget(self, action: #selector(MoviesViewController.refreshControlAction(_ :)), for: UIControlEvents.valueChanged)
+//            tableView.insertSubview(refreshControl, at: 0)
+//            print("This did get run")
         }
         
         print("this worked")
