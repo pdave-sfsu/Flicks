@@ -162,6 +162,7 @@
                                         </view>
                                         <connections>
                                             <outlet property="movieImageView" destination="IhL-9i-QW6" id="zKq-Ag-Ght"/>
+                                            <segue destination="Nw8-uK-SPC" kind="push" id="49U-Eb-wxm"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -292,6 +293,7 @@
         <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="49U-Eb-wxm"/>
         <segue reference="iSq-yh-6Sl"/>
     </inferredMetricsTieBreakers>
 </document>

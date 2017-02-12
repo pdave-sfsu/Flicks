@@ -252,9 +252,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBAction func collectionViewChangeButton(_ sender: Any) {
         
+        filteredData = movies
+        
         if tableView.isHidden {
             tableView.isHidden = false
             collectionView.isHidden = true
+            
         } else {
             tableView.isHidden = true
             collectionView.isHidden = false
@@ -337,7 +340,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             let indexPath = tableView.indexPath(for: cell)
             
             //Specific movie retrieved
-            let movie = movies![indexPath!.row]
+            let movie = filteredData![indexPath!.row]
             
             //segue.destination is cast as DetailViewController to access movie property
             let detailViewController = segue.destination as! DetailViewController
@@ -345,6 +348,21 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             //Set movie property with details of movie
             detailViewController.movie = movie
             
+        } else if let cell = sender as? UICollectionViewCell {
+            print ("This is a hit!")
+            
+            //IndexPath of cell
+            let indexPath = collectionView.indexPath(for: cell)
+            
+            //Specific movie retrieved
+            let movie = filteredData![indexPath!.row]
+            
+            //segue.destination is cast as DetailViewController to access movie property
+            let detailViewController = segue.destination as! DetailViewController
+            
+            //Set movie property with details of movie
+            detailViewController.movie = movie
+
         }
         
         print("prepare for segue")
