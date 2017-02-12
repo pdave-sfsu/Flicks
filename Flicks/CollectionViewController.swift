@@ -107,7 +107,7 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
         let posterPath = movie["poster_path"] as! String
         let imageURL = NSURL(string: baseURL + posterPath)
         
-        cell.posterView.setImageWith(imageURL as! URL)
+//        cell.posterView.setImageWith(imageURL as! URL)
         
         print("row \(indexPath.row)")
         

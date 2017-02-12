@@ -14,7 +14,7 @@ import MBProgressHUD
 
 //UITableViewDataSource & UITableViewDelegate for tableView
 //UISearchBarDelegate for searchBar
-class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     
     //tableView
     @IBOutlet weak var tableView: UITableView!
@@ -40,6 +40,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     //variable to determine if progressBar is Showing
     var isProgressBarShowing = false
     
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    
+    
     //viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +54,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         //setting the searchBar to the MoviesViewController
         searchBar.delegate = self
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        collectionView.isHidden = true
         
         //turning the networkErrorView off
         networkErrorView.isHidden = true
@@ -102,6 +111,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                     
                     //reloads the tableView with new content
                     self.tableView.reloadData()
+                    
+                    self.collectionView.reloadData()
                     
                     //resets searchBar text
                     self.searchBar.text = ""
@@ -237,13 +248,77 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         self.tableView.reloadData()
     }
     
-    @IBAction func collevtionViewButton(_ sender: Any) {
-        tableView.isHidden = true
+    @IBAction func collectionViewChangeButton(_ sender: Any) {
+        
+        if tableView.isHidden {
+            tableView.isHidden = false
+            collectionView.isHidden = true
+        } else {
+            tableView.isHidden = true
+            collectionView.isHidden = false
+        }
+        
+        print("this worked")
     }
     
-    @IBAction func collectionViewChangeButton(_ sender: Any) {
-        tableView.isHidden = true
-        print("this worked")
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if let movies = filteredData {
+            return movies.count
+        } else {
+            return 0
+        }
+    }
+    
+    
+    // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+    @available(iOS 6.0, *)
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        //Make a cell of type MovieCell (within the Views); make sure to cast it
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCollectionViewCell", for: indexPath) as! MovieCollectionViewCell
+        
+        //Retrieve the movie from filteredData and retrieve the title and overview
+        let movie = filteredData![indexPath.row]
+        
+        //Use the baseURL and the posterPath URL to retrieve the image
+        let baseURL = "https://image.tmdb.org/t/p/w500"
+        //Use if let to safely unwrap the postPath
+        if let posterPath = movie["poster_path"] as? String {
+            
+            //Retireve the image using the complete URL
+            let imageRequest = NSURLRequest(url: NSURL(string: baseURL + posterPath) as! URL)
+            
+            //Change the image within the cell
+            //Images will fade in if they are not cached
+            cell.movieImageView.setImageWith(
+                imageRequest as URLRequest,
+                
+                placeholderImage: nil,
+                success: { (imageRequest, imageResponse, image) -> Void in
+                    
+                    // imageResponse will be nil if the image is cached
+                    if imageResponse != nil {
+                        print("Image was NOT cached, fade in image")
+                        cell.movieImageView.alpha = 0.0
+                        cell.movieImageView.image = image
+                        UIView.animate(withDuration: 0.3, animations: { () -> Void in
+                            cell.movieImageView.alpha = 1.0
+                        })
+                    } else {
+                        print("Image was cached so just update the image")
+                        cell.movieImageView.image = image
+                    }
+            },
+                failure: { (imageRequest, imageResponse, error) -> Void in
+                    
+            })
+        }
+        
+        print("row \(indexPath.row)")
+        
+        //Return the cell to be displayed
+        return cell
+
     }
     
 
