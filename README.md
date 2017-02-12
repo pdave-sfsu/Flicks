@@ -95,7 +95,7 @@ The following **additional** features are implemented:
 - [X] Added a third "popular" navigation bar
 - [X] Within the detailView, only the description gets dragged when it is scrolled
 - [X] Has both tableView & collectionView
-- [X] Added constraints to the tableViewCell, changed the font
+- [X] Added constraints to the tableViewCell, cells are resizable, changed the font
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
