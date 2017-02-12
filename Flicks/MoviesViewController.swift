@@ -52,6 +52,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.dataSource = self
         tableView.delegate = self
         
+        //Tells the table to follow the auto-layout constraint rules
+        tableView.rowHeight = UITableViewAutomaticDimension
+        //Estimated for the scrollHeight Dimension
+        tableView.estimatedRowHeight = 120
+        
         //setting the searchBar to the MoviesViewController
         searchBar.delegate = self
         
