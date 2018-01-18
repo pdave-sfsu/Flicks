@@ -109,7 +109,7 @@ Here's a walkthrough of implemented user stories:
 ![animatedGIF](FlicksGIF2.gif)
 
 
-[Updated GIF (2/12):](#gif-walkthrough)
+# Updated GIF (2/12):
 
 
 ![animatedGIF](FlicksGIF3.gif)
