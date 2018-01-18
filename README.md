@@ -108,6 +108,7 @@ Here's a walkthrough of implemented user stories:
 
 ![animatedGIF](FlicksGIF2.gif)
 
+# Final Walkthrough
 
 # Updated GIF (2/12):
 
