@@ -34,7 +34,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 1. How to convert between collectionView and TableView
 2. Common errors with Xcode. Xcode can be very frustrating at times. I want a tutorial on Xcode to make it simple.
 
-## Video Walkthrough 
+## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
@@ -46,8 +46,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 Describe any challenges encountered while building the app.
 
-Using Xcode was a big challenge. Layering in Xcode is a nightmare. 
-Switching between collectionView and tableView was hard. 
+Using Xcode was a big challenge. Layering in Xcode is a nightmare.
+Switching between collectionView and tableView was hard.
 Adding icons to apps did not work for me.
 Also had an issue with the ProgressBar cocoapod; need to understand documentation in Swift better.
 
@@ -66,10 +66,10 @@ Also had an issue with the ProgressBar cocoapod; need to understand documentatio
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-    
-    
-    
-    
+
+
+
+
 # Project 2 - Flicks
 
 Flicks is a movies app displaying box office and top rental DVDs using [The Movie Database API](http://docs.themoviedb.apiary.io/#).
@@ -102,13 +102,15 @@ Please list two areas of the assignment you'd like to **discuss further with you
 1. Added icon images is important
 2. Videos for optional user stories.
 
-## Video Walkthrough 
+## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
 ![animatedGIF](FlicksGIF2.gif)
 
 Updated GIF (2/12):
+[create an anchor](#anchors-in-markdown)
+
 
 ![animatedGIF](FlicksGIF3.gif)
 
