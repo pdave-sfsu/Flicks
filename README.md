@@ -34,6 +34,15 @@ Please list two areas of the assignment you'd like to **discuss further with you
 1. How to convert between collectionView and TableView
 2. Common errors with Xcode. Xcode can be very frustrating at times. I want a tutorial on Xcode to make it simple.
 
+# Final Walkthrough
+
+# Updated GIF (2/12):
+
+
+![animatedGIF](FlicksGIF3.gif)
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
@@ -108,14 +117,7 @@ Here's a walkthrough of implemented user stories:
 
 ![animatedGIF](FlicksGIF2.gif)
 
-# Final Walkthrough
 
-# Updated GIF (2/12):
-
-
-![animatedGIF](FlicksGIF3.gif)
-
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
